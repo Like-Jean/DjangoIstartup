@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>欢迎注册新事业</title>
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/koali.js"></script>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <style type="text/css">
+    </style>
+	<script type="text/javascript">     
+function countDown(secs,surl){     
+ //alert(surl);     
+ var jumpTo = document.getElementById('jumpTo');
+ jumpTo.innerHTML=secs;  
+ if(--secs>0){     
+     setTimeout("countDown("+secs+",'"+surl+"')",1000);     
+     }     
+ else{       
+     location.href=surl;     
+     }     
+ }     
+</script>
+</head>
+    
+<body style="padding:0px;margin-left:0px;">
+   <div id="Layer1" style="position:absolute; width:100%; height:115%; z-index:-1">
+    <img src="http://120.25.12.205/site_media/img/bg5.jpg" height="110%" width="100%"/>
+   </div> 
+<div class='main'>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="http://120.25.12.205/" class="navbar-brand">Koali</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">手机app</a></li>
+                        <li class="active"><a href="#">注册</a></li>
+                        <li><a href="http://120.25.12.205/web_login/">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<div class="maintitle" style="padding-top:20%">
+<h2 style="text-align: center;">您已成功注册新事业账户</h2>
+</div>
+    <p style="margin-top: 5%;text-align: center;color:#ffffff">您的登录账户为<label style="color: #d5d5d5;font-weight: bold;">{% if mail %} {{mail}} {% else %} {{phone}} {% endif %}</label>(如果忘记账户密码可通过邮箱或手机短信找回)</p>
+    <p style="margin-top: 2%;text-align: center;color:#ffffff">系统将于<span id="jumpTo">5</span>秒跳转至登录界面，如果没有请<a href="http://120.25.12.205/web_login/">手动点击跳转</a></p>
+</div>
+<script type="text/javascript">countDown(5,'http://120.25.12.205/web_login/');</script>
+</body>
+</html>

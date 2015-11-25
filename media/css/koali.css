@@ -1,0 +1,129 @@
+h1,p,a,button{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.onepage{
+    height:100%;
+}
+.container{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.app-text{
+    padding-top: 10%;
+    text-align: center;
+    height:400px;
+    background-image: url(test1.png);
+}
+.app-text p{
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+.headh1content{
+    margin-top: 150px;
+    line-height: 75px;
+}
+
+.title-text{
+    margin-left: 50px;
+}
+
+.headh1content h1{
+    font-size: 50pt;
+}
+
+#logo1{
+    width:100px;
+    height:100px;
+}
+
+.carousel-control.left{
+    text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
+    background-repeat: repeat-x;
+}
+
+.carousel-control.right{
+    text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%);
+    background-repeat: repeat-x;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    left: -20%;
+    height: 40px;
+}
+
+
+.fooster{
+    width:100%;
+    background:#444444;
+    text-align:center;
+}
+.app_img{
+    margin-top:3%;
+    margin-left:3%;
+    margin-right:3%;
+}
+.label{
+    color:#aaaaaa;
+}
+
+.info{
+    margin-top: 30px;
+}
+
+#menu{
+    position: fixed;
+    top:30%;
+    left: 50%;
+    margin-left: 30%;
+    width: 80px;
+}
+
+#menu ul li{
+    list-style: none;
+}
+
+#menu ul li a{
+    display: block;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #286090;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menu ul li a:hover,
+#menu ul li a.current{
+    color: #ffffff;
+    background-color: #00678e;
+}
+
+#content h4{
+    margin-top: 6%;
+    color: #204d74;
+    font-weight: bold;
+}
+
+#content h2{
+background-color: #555555;
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+    height: 50px;
+    color: aliceblue;
+}
+
+#content a{
+    margin-top: 3%;
+    margin-bottom: 4%;
+    margin-left: 40%;
+    text-align: center;
+}

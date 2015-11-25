@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>{{obj.name}}-创业板</title>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //活动条发生滚动
+            $(window).scroll(function() {
+                var top = $(document).scrollTop();
+                var menu = $("#menu");
+                var items = $(".item");
+                var currentId = "";
+                console.log(top);
+                items.each(function() {
+                    var m = $(this);
+                    var itemTop = m.offset().top;
+                    if(top>itemTop-150){
+                        currentId = "#" + m.attr("id");
+                    }
+                    else {
+                        return false;
+                    }
+                });
+
+                //给相应链接设置样式，取消其他链接样式。
+                var currentLink = $("#menu").find(".current");
+                if (currentId&&currentLink.attr("href")!=currentId){
+                    currentLink.removeClass("current");
+                    menu.find("[href="+currentId+"]").addClass("current");
+                }
+            });
+        });
+    </script>
+</head>
+<body style="background-color: #e7e7e7">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="http://120.25.12.205/" class="navbar-brand">Koali</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://120.25.12.205/mainpage/">个人信息</a></li>
+                <li class="active"><a href="http://120.25.12.205/web_poineeringCircle/?direction1=0&direction2=0&p=1">创业板</a></li>
+                <li><a href="http://120.25.12.205/web_investmentCircle/?p=1">投资源</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="head" class="col-lg-9 col-sm-offset-1" style="margin-top: 5%;padding: 0px;background-color: #ffffff;border: 1px silver solid">
+    <div class="col-lg-2" style="margin-top: 2%;margin-bottom: 2%">
+        <img src="{{user.headImg}}" style="width:150px;height:150px;border-radius:50%;"/>
+    </div>
+    <div class="col-lg-9" style="margin-top: 1%;margin-bottom: 1%">
+        <h3>{{project.name}}</h3>
+        <p style="display: block;color: #adadad">{{project.summary}}</p>
+        <div class="col-lg-12" style="padding: 0px">
+            <label>项目方向</label>
+            <img src="http://120.25.12.205/site_media/img/tag1.png" style="height: 2%;width: 11%">
+            <div class="col-lg-6" style="position:absolute;width:100px;height:100px;z-indent:2;left:0.8cm;top:0;margin-left: 3%">
+                <label style="margin-top: 3%;color: #ffffff">{{project.direction1}}</label>
+            </div>
+            <img src="http://120.25.12.205/site_media/img/tag2.png" style="height: 2%;width: 11%">
+            <div class="col-sm-offset-6 col-lg-6" style="position:absolute;width:100px;height:100px;z-indent:2;left:2.5cm;top:0;margin-left: 6%">
+                <label style="margin-top: 3%;color: #ffffff">{{project.direction2}}</label>
+            </div>
+        </div>
+        <div class="col-lg-12" style="padding: 0px">
+            <label>创建日期:{{project.startDate}}</label>
+            <label class="col-sm-offset-2">{{project.province}}{{project.city}}</label>
+        </div>
+        <div class="col-lg-12 item" style="padding: 0px" id="item1">
+            <label>所需资金:{{project.fund}}</label>
+            <label class="col-sm-offset-8">正式运营中</label>
+        </div>
+    </div>
+</div>
+<div id="main" class="col-lg-9 col-sm-offset-1" style="margin-top: 2%;padding: 0px;background-color: #ffffff;border: 1px silver solid">
+    <div id="menu">
+        <ul>
+            <li><a href="#item1" class="current">简略概要</a></li>
+            <li><a href="#item2">产品/服务</a></li>
+            <li><a href="#item3">市场竞争</a></li>
+            <li><a href="#item4">营销与销售</a></li>
+            <li><a href="#item5">商业模式</a></li>
+            <li><a href="#item6">管理团队</a></li>
+            <li><a href="#item7">执行方案</a></li>
+            <li><a href="#item8">财务融资</a></li>
+            <li><a href="#item9">机会风险</a></li>
+        </ul>
+    </div>
+    <div id="content" style="padding: 0">
+        <h2>简略概要</h2>
+        <div style="border-top: 1px gainsboro solid;">
+		{% if visible.executiveSum %}
+            <h4>你的商业思路创意是什么？在哪些方面它可以称得上独一无二？</h4>
+            <p>{{executiveSum.idea}}</p>
+            <h4>目标顾客/客户是谁？对这些顾客/客户来说，它有什么价值？是否经过市场试水，接触过哪些消费者，反馈如何？</h4>
+            <p>{{executiveSum.targetCustomer}}</p>
+            <h4>如何获得销售，收入渠道？潜在的市场有多大？如何预测市场增长率？</h4>
+            <p>{{executiveSum.incomeChannel}}</p>
+            <h4>将面对怎么样的竞争？有哪些竞争对手？是否有进入的门槛，快速发展/专利？</h4>
+            <p>{{executiveSum.competitor}}</p>
+            <h4>预计需要多少投资（评估）？销售、成本和利润方面的情况如何？</h4>
+            <p>{{executiveSum.investmentCost}}</p>
+		{% else %}
+	    <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+		{% endif %}
+        </div>
+        <label id="item2" class="item"></label>
+        <h2 style="margin-top: 50px">产品/服务</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.consumer %}
+            <h4>产品/服务面向的消费者是哪些？消费的需求是什么？如何解决？</h4>
+            <p>{{product.consumer}}</p>
+            <h4>产品/服务为顾客/客户提供了什么价值？</h4>
+            <p>{{product.profitSupply}}</p>
+            <h4>目前竞争产品/服务有哪些？您的产品/服务有何创新独特之处，有何优势？</h4>
+            <p>{{product.advantage}}</p>
+            <h4>产品/服务处于什么开发阶段？有什么后续发展计划？</h4>
+            <p>{{product.developmentStatus}}</p>
+            <h4>是否有专利或保护门槛？是否需要商业合作伙伴？</h4>
+            <p>{{product.patent}}</p>
+		{% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+        </div>
+        <label id="item3" class="item"></label>
+        <h2 style="margin-top: 50px">市场竞争</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.consumer %}
+            <h4>整个行业情况如何？什么因素推动行业发展，技术进展与创新是否重要？</h4>
+            <p>{{competition.tradeCondition}}</p>
+            <h4>您如何细分市场？所处细分市场的份额与规模目前有多大，未来几年内呢？</h4>
+            <p>{{competition.marketSclae}}</p>
+            <h4>目标顾客/客户群是哪些？促使他们购买产品/服务的关键要素是什么？</h4>
+            <p>{{competition.attracttion}}</p>
+            <h4>有哪些主要的竞争者？他们提供的类似竞品/服务有哪些？</h4>
+            <p>{{competition.competitionProduct}}</p>
+            <h4>有何竞争优势？能否持续？</h4>
+            <p>{{competition.competitveFactor}}</p>
+		 {% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+
+        </div>
+        <label id="item4" class="item"></label>
+        <h2 style="margin-top: 50px">营销与销售</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.sales %}
+            <h4>产品和服务如何获取顾客/客户？</h4>
+            <p>{{sales.attractiveWay}}</p>
+            <h4>产品/服务如何定价，销售量与价格的关系如何？</h4>
+            <p>{{sales.pricingFactor}}</p>
+            <h4>有营销方案和广告计划？</h4>
+            <p>{{sales.marketingProgram}}</p>
+            <h4>产品如何面向消费者，何种渠道？</h4>
+            <p>{{sales.salesWay}}</p>
+		 {% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+
+        </div>
+        <label id="item5" class="item"></label>
+        <h2 style="margin-top: 50px">商业模式</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.businessModel %}
+            <h4>核心工作是什么？组织的商业职能是哪方面，什么结构？</h4>
+            <p>{{businessModel.coreWork}}</p>
+            <h4>需要什么资源和技术去投入创造产品/服务？</h4>
+            <p>{{businessModel.resource}}</p>
+            <h4>怎么获得收入？</h4>
+            <p>{{businessModel.profitChannel}}</p>
+		 {% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+
+        </div>
+        <label id="item6" class="item"></label>
+        <h2 style="margin-top: 50px">管理团队</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+
+        </div>
+        <label id="item7" class="item"></label>
+        <h2 style="margin-top: 50px">执行方案</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.implementationPlan %}
+            <h4>业务发展的重点阶段有哪些，具体时间表？</h4>
+            <p>{{implementationPlan.keyStage}}</p>
+            <h4>如何计划安排各项工作以达到业务发展目标？</h4>
+            <p>{{implementationPlan.workPlan}}</p>
+            <h4>计划短期（1-3年）有多少人员需求，有多少资本需求？各阶段所需投资？</h4>
+            <p>{{implementationPlan.planRequest}}</p>
+		 {% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+        </div>
+        <label id="item8" class="item"></label>
+        <h2 style="margin-top: 50px">财务融资</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.finacing %}
+            <div class="col-lg-12">
+		
+                <a href="" type="button"{% if Finacing.cashFlow %} class="btn btn-primary">点击下载现金流量表
+					{% else %} class="btn btn-primary" disabled="disabled">该用户尚未上传现金流量表{% endif %}</a>
+            </div>
+            <div class="col-lg-12">
+                <a href="" type="button" {% if Finacing.profitAndLoss %}
+                class="btn btn-primary">点击下载损益表
+					{% else %} class="btn btn-primary" disabled="disabled">该用户尚未上传损益表{% endif %}</a>
+            </div>
+            <div class="col-lg-12">
+                <a href="" type="button" {% if Finacing.assetAndLiabitilities %} class="btn btn-primary">点击下载资产负载表
+					{% else %} class="btn btn-primary" disabled="disabled">该用户尚未上传资产负载表{% endif %}</a>
+            </div>
+		{% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+        </div>
+        <label id="item9" class="item"></label>
+        <h2 style="margin-top: 50px">机会风险</h2>
+        <div style="border-top: 1px gainsboro solid;border-bottom: 1px gainsboro solid">
+		{% if visible.opportunitiesAndRisks %}
+            <h4>有哪些发展机会？</h4>
+            <p>{{opportunitiesAndRisks.opportunities}}</p>
+            <h4>面临哪些风险？</h4>
+            <p>{{opportunitiesAndRisks.risks}}</p>
+		{% else %}
+            <h3 style="text-align: center;">该用户选择隐藏该信息</h3>
+                {% endif %}
+        </div>
+    </div>
+</div>
+<div class = "fooster col-lg-12" style="margin-top: 2%;z-index:-1">
+    <img class="app_img" src="http://120.25.12.205/site_media/img/apple.png" />
+    <img class="app_img" src="http://120.25.12.205/site_media/img/android.png" />
+    <p>
+        <a class="label">夸励公司</a>
+        <a class="label">加入我们</a>
+        <a class="label">联系我们</a>
+        <a class="label">创业成员</a>
+        <a class="label">意见反馈</a>
+    </p>
+    <a class="label">©2014 京ICP备13045110号 </a>
+</div>
+</body>
+</html>

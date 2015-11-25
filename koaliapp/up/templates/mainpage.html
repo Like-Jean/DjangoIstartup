@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>{{user.name}}的个人主页</title>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/koali.js"></script>
+    <style type="text/css">
+        span {
+            font-size: 30px;
+            margin-left: 60px;
+            margin-top: 500px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="http://120.25.12.205" class="navbar-brand">Koali</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+               <li class="active"><a href="#">个人信息</a></li>
+                <li><a href="http://120.25.12.205/web_poineeringCircle/?direction1=0&direction2=0&p=1">创业板</a></li>
+		<li><a href="http://120.25.12.205/web_investmentCircle/?p=1">投资源</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="maintitle" style="padding-top: 70px;">
+    <h1 class="col-lg-offset-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.name}}，您好，欢迎回来</h1>
+</div>
+<h4 class="col-sm-offset-2 col-lg-2" style="margin-top: 60px;">基本信息</h4>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <label class="col-lg-4 info">姓名：{{user.name}}</label>
+    <label class=" col-lg-4 info">账号：{% if user.phone %}
+    {{user.phone}}
+    {% else %}
+    {{user.mail}}
+    {% endif %}
+    </label>
+    <img src="{{user.img}}" style="margin-top: 30px;width:100px;height:100px;border-radius:30px;">
+    <label class="col-lg-4">性别：
+        {% if user.is_male %}
+        <label class="btn btn-primary">
+        <input type="radio" value="男" name="form" checked="checked" onChange="formChange()">男</input>
+    </label>
+        <label class="btn btn-primary">
+            <input type="radio" value="女" name="form" onChange="formChange()" />女</input>
+            </label>
+        </label>
+            {% else %}
+    <label class="btn btn-primary">
+            <input type="radio" value="男" name="form" onChange="formChange()">男</input>
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" value="女" name="form" checked="checked" onChange="formChange()" />女</input>
+        </label>
+    {% endif %}
+    </label>
+    <label class="col-lg-4">类型：{{user.form}}</label>
+    <div class="col-lg-2">
+    	<form id="uploadForm" action="http://120.25.12.205/web_upload/" method="post" enctype="multipart/form-data">
+    		<input type="file" size="30" name="headImg" value="请选择图片"/>
+    		<input type="text" value="{{user.id}}" name="userid" style="display: none"/>
+    		<button class="btn btn-primary info" onclick=uploadImg()>点击上传</button>
+    	</form>
+    </div>
+    <label class=" col-lg-4 info">地区：{{user.province}} {{user.city}}</label>
+    <label class=" col-lg-4 info">院校：{{user.school}}</label>
+    <label class=" col-lg-4 info">工作单位：{{user.company}}</label>
+</div>
+<br/>
+{% if user.is_poineer %}
+<h4 class="col-sm-offset-2 col-lg-2" style="margin-top: 60px">创业标签</h4>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <label class="col-lg-4 info">创始人:{{user.name}}</label>
+    <label class="col-lg-4 info">项目名称:<input type="text" id='name' value="{{project.name}}"/></label>
+    <label class="col-lg-4 info">资金:<input type="text" id='fund' value="{{project.fund}}" /></label>
+    <div class="col-lg-4 info" style="display: inline">
+        <label>阶段：<select id="stage">
+	    <option value="{{project.stage}}">{{project.stage}}</option>
+            <option value="精炼创意中">精炼创意中</option>
+            <option value="组建团队中">组建团队中</option>
+            <option value="产品开发中">产品开发中</option>
+            <option value="正式运营中">正式运营中</option>
+        </select></label>
+    </div>
+    <div class="col-lg-4 info" style="display: inline">
+        <label>方向一：<select id="direction1">
+	    <option value="{{project.direction1}}" selected="selected">{{project.direction1}}</option>
+            <option value="全部">全部</option>
+            <option value="移动互联网">移动互联网</option>
+            <option value="电子商务">电子商务</option>
+            <option value="社交工具">社交工具</option>
+            <option value="银保理财">银保理财</option>
+            <option value="互联网金融">互联网金融</option>
+            <option value="众筹P2P">众筹P2P</option>
+            <option value="O2O">O2O</option>
+            <option value="TMT行业">TMT行业</option>
+            <option value="餐饮酒店">餐饮酒店</option>
+            <option value="移动应用">移动应用</option>
+            <option value="消费零售">消费零售</option>
+            <option value="生物制药">生物制药</option>
+            <option value="健康养生">健康养生</option>
+            <option value="互联网医疗">互联网医疗</option>
+            <option value="企业应用">企业应用</option>
+            <option value="创业服务">创业服务</option>
+            <option value="营销广告">营销广告</option>
+            <option value="美图视频">美图视频</option>
+            <option value="游戏娱乐">游戏娱乐</option>
+            <option value="影视内容">影视内容</option>
+            <option value="文化传媒">文化传媒</option>
+            <option value="娱乐图片">娱乐图片</option>
+            <option value="旅游会展">旅游会展</option>
+            <option value="搜索安全">搜索安全</option>
+            <option value="效率工具">效率工具</option>
+            <option value="运动体育">运动体育</option>
+            <option value="智能硬件">智能硬件</option>
+            <option value="家居产品">家居产品</option>
+            <option value="后勤物流">后勤物流</option>
+            <option value="新能源">新能源</option>
+            <option value="清洁技术">清洁技术</option>
+            <option value="电动车">电动车</option>
+            <option value="教育培训">教育培训</option>
+            <option value="科研创新">科研创新</option>
+            <option value="新兴农业">新兴农业</option>
+            <option value="房地产建筑">房地产建筑</option>
+            <option value="先进制造业">先进制造业</option>
+            <option value="现代服务业">现代服务业</option>
+            <option value="其它">其它</option>
+        </select></label>
+    </div>
+    <div class="col-lg-4 info" style="display: inline">
+        <label>方向二：<select id="direction2">
+	    <option value="{{project.direction2}}" selected="selected">{{project.direction2}}</option>
+            <option value="全部">全部</option>
+            <option value="移动互联网">移动互联网</option>
+            <option value="电子商务">电子商务</option>
+            <option value="社交工具">社交工具</option>
+            <option value="银保理财">银保理财</option>
+            <option value="互联网金融">互联网金融</option>
+            <option value="众筹P2P">众筹P2P</option>
+            <option value="O2O">O2O</option>
+            <option value="TMT行业">TMT行业</option>
+            <option value="餐饮酒店">餐饮酒店</option>
+            <option value="移动应用">移动应用</option>
+            <option value="消费零售">消费零售</option>
+            <option value="生物制药">生物制药</option>
+            <option value="健康养生">健康养生</option>
+            <option value="互联网医疗">互联网医疗</option>
+            <option value="企业应用">企业应用</option>
+            <option value="创业服务">创业服务</option>
+            <option value="营销广告">营销广告</option>
+            <option value="美图视频">美图视频</option>
+            <option value="游戏娱乐">游戏娱乐</option>
+            <option value="影视内容">影视内容</option>
+            <option value="文化传媒">文化传媒</option>
+            <option value="娱乐图片">娱乐图片</option>
+            <option value="旅游会展">旅游会展</option>
+            <option value="搜索安全">搜索安全</option>
+            <option value="效率工具">效率工具</option>
+            <option value="运动体育">运动体育</option>
+            <option value="智能硬件">智能硬件</option>
+            <option value="家居产品">家居产品</option>
+            <option value="后勤物流">后勤物流</option>
+            <option value="新能源">新能源</option>
+            <option value="清洁技术">清洁技术</option>
+            <option value="电动车">电动车</option>
+            <option value="教育培训">教育培训</option>
+            <option value="科研创新">科研创新</option>
+            <option value="新兴农业">新兴农业</option>
+            <option value="房地产建筑">房地产建筑</option>
+            <option value="先进制造业">先进制造业</option>
+            <option value="现代服务业">现代服务业</option>
+            <option value="其它">其它</option>
+        </select></label>
+    </div>
+    <label class="col-lg-12 info" >一句话简介</label>
+    <textarea cols="70" id='summary' class="col-lg-4">{{project.summary}}</textarea>
+    <button class="btn btn-warning col-sm-offset-6" onclick=changeTag()>保存修改</button>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">简略概要</h4>
+<label for="check1" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check1" onchange=shift(1,"check1") {% if visible.executiveSum %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("executiveSum",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="executiveSum" style="display: none">
+        <label class="info">你的商业思路创意是什么？在哪些方面它可以称得上独一无二？</label>
+        <textarea cols="120" rows="5" id="idea">{{executiveSum.idea}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(1,1,"idea")>保存修改</button>
+        <br />
+        <label class="info">目标顾客/客户是谁？对这些顾客/客户来说，它有什么价值？是否经过市场试水，接触过哪些消费者，反馈如何？</label>
+        <textarea cols="120" rows="5" id="targetCustomer">{{executiveSum.targetCustomer}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(1,2,"targetCustomer")>保存修改</button>
+        <br />
+        <label class="info">如何获得销售，收入渠道？潜在的市场有多大？如何预测市场增长率？</label>
+        <textarea cols="120" rows="5" id="incomeChanne">{{executiveSum.incomeChannel}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(1,3,"incomeChanne")>保存修改</button>
+        <br />
+        <label class="info">将面对怎么样的竞争？有哪些竞争对手？是否有进入的门槛，快速发展/专利？</label>
+        <textarea cols="120" rows="5" id="competitor">{{executiveSum.competitor}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(1,4,"competitor")>保存修改</button>
+        <br />
+        <label class="info">预计需要多少投资（评估）？销售、成本和利润方面的情况如何？</label>
+        <textarea cols="120" rows="5" id="investmentCost">{{executiveSum.investmentCost}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(1,5,"investmentCost")>保存修改</button>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">产品服务</h4>
+<label for="check2" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check2" onchange=shift(2,"check2") {% if visible.product %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("product",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="product" style="display: none">
+        <label class="info">产品/服务面向的消费者是哪些？消费的需求是什么？如何解决？</label>
+        <textarea cols="120" rows="5" id="consumer">{{product.consumer}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(2,1,"consumer")>保存修改</button>
+        <br />
+        <label class="info">产品/服务为顾客/客户提供了什么价值？</label>
+        <textarea cols="120" rows="5" id="profitSupply">{{product.profitSupply}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(2,2,"profitSupply")>保存修改</button>
+        <br />
+        <label class="info">目前竞争产品/服务有哪些？您的产品/服务有何创新独特之处，有何优势？</label>
+        <textarea cols="120" rows="5" id="advantage">{{product.advantage}}</textarea>
+        <button class="btn btn-warning" onclick=changePlan(2,3,"advantage")>保存修改</button>
+        <br />
+	<label class="info">产品/服务处于什么开发阶段？有什么后续发展计划？</label>
+        <textarea cols="120" rows="5" id="developmentStatus">{{product.developmentStatus}}</textarea>
+        <button class="btn btn-warning" onclick=changePlan(2,4,"developmentStatus")>保存修改</button>
+        <br />
+	<label class="info">是否有专利或保护门槛？是否需要商业合作伙伴？</label>
+        <textarea cols="120" rows="5" id="patent">{{product.patent}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(2,5,"patent")>保存修改</button>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">市场竞争</h4>
+<label for="check3" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check3" onchange=shift(3,"check3") {% if visible.competition %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("competition",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="competition" style="display: none">
+        <label class="info">整个行业情况如何？什么因素推动行业发展，技术进展与创新是否重要？</label>
+        <textarea cols="120" rows="5" id="tradeCondition">{{competition.tradeCondition}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(3,1,"tradeCondition")>保存修改</button>
+        <br />
+        <label class="info">您如何细分市场？所处细分市场的份额与规模目前有多大，未来几年内呢？</label>
+        <textarea cols="120" rows="5" id="marketSclae">{{competition.marketSclae}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(3,2,"marketSclae")>保存修改</button>
+        <br />
+        <label class="info">目标顾客/客户群是哪些？促使他们购买产品/服务的关键要素是什么？</label>
+        <textarea cols="120" rows="5" id="attracttion">{{competition.attracttion}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(3,3,"attracttion")>保存修改</button>
+        <br />
+        <label class="info">有哪些主要的竞争者？他们提供的类似竞品/服务有哪些？</label>
+        <textarea cols="120" rows="5" id="competitionProduct">{{competition.competitionProduct}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(3,4,"competitionProduct")>保存修改</button>
+        <br />
+        <label class="info">有何竞争优势？能否持续？</label>
+        <textarea cols="120" rows="5" id="competitveFactor">{{competition.competitveFactor}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(3,5,"competitveFactor")>保存修改</button>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">营销销售</h4>
+<label for="check4" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check4" onchange=shift(4,"check4") {% if visible.sales %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("sales",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="sales" style="display: none">
+        <label class="info">产品和服务如何获取顾客/客户？</label>
+        <textarea cols="120" rows="5" id="attractiveWay">{{sales.attractiveWay}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(4,1,"attractiveWay")>保存修改</button>
+        <br />
+        <label class="info">产品/服务如何定价，销售量与价格的关系如何？</label>
+        <textarea cols="120" rows="5" id="pricingFactor">{{sales.pricingFactor}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(4,2,"pricingFactor")>保存修改</button>
+        <br />
+        <label class="info">有营销方案和广告计划？</label>
+        <textarea cols="120" rows="5" id="marketingProgram">{{sales.marketingProgram}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(4,3,"marketingProgram")>保存修改</button>
+        <br />
+        <label class="info">产品如何面向消费者，何种渠道？</label>
+        <textarea cols="120" rows="5" id="salesWay">{{sales.salesWay}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(4,4,"salesWay")>保存修改</button>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">商业模式</h4>
+<label for="check5" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check5" onchange=shift(5,"check5") {% if visible.businessModel %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("businessModel",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="businessModel" style="display: none">
+        <label class="info">核心工作是什么？组织的商业职能是哪方面，什么结构？</label>
+        <textarea cols="120" rows="5" id="coreWork">{{businessModel.coreWork}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(5,1,"coreWork")>保存修改</button>
+        <br />
+        <label class="info">需要什么资源和技术去投入创造产品/服务？</label>
+        <textarea cols="120" rows="5" id="resource">{{businessModel.resource}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(5,2,"resource")>保存修改</button>
+        <br />
+        <label class="info">怎么获得收入？</label>
+        <textarea cols="120" rows="5" id="profitChannel">{{businessModel.profitChannel}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(5,3,"profitChannel")>保存修改</button>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">执行方案</h4>
+<label for="check7" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check7" onchange=shift(7,"check7") {% if visible.implementationPlan %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("implementationPlan",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="implementationPlan" style="display: none">
+        <label class="info">业务发展的重点阶段有哪些，具体时间表？</label>
+        <textarea cols="120" rows="5" id="keyStage">{{implementationPlan.keyStage}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(7,1,"keyStage")>保存修改</button>
+        <br />
+        <label class="info">如何计划安排各项工作以达到业务发展目标</label>
+        <textarea cols="120" rows="5" id="workPlan">{{implementationPlan.workPlan}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(7,2,"workPlan")>保存修改</button>
+        <br />
+        <label class="info">怎么获得收入？</label>
+        <textarea cols="120" rows="5" id="planRequest">{{implementationPlan.planRequest}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(7,3,"planRequest")>保存修改</button>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">财务融资</h4>
+<label for="check8" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check8" onchange=shift(8,"check8") {% if visible.finacing %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("finacing",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="finacing" style="display: none">
+        <label class="info col-lg-2">现金流量表</label>
+	{% if finacing.cashFlow %}
+	<a class="info col-lg-5" href="{{finacing.cashFlow.url}}">{{finacing.cashFlow.name}} </a>
+	{% else %}
+	<label class="info col-lg-5">您还未上传此文件</label>
+	{% endif %}
+	<a href="#" class="info col-sm-offset-2 col-lg-3">点击下载现金流量表模板</a>
+	<div class="col-lg-12" style="margin-top:1%">
+          <form action="http://120.25.12.205/uploadCashflow/" method="POST" enctype="multipart/form-data">
+	    <input type="text" value="{{user.id}}" name="userid" style="display: none" />
+            <input type="file" name="cashflow"/>
+            <button class="btn btn-primary" type="submit">点击上传</button>
+          </form>
+	</div>
+        <label class="info col-lg-2">损益表</label>
+        {% if finacing.profitAndLoss %}
+        <a class="info col-lg-5" href="{{finacing.profitAndLoss.url}}">{{finacing.profitAndLoss.name}} </a>
+        {% else %}
+        <label class="info col-lg-5">您还未上传此文件</label>
+	{% endif %}
+	<a href="#" class="info col-sm-offset-2 col-lg-3">点击下载损益表模板</a>
+        <div class="col-lg-12" style="margin-top:1%">
+          <form action="http://120.25.12.205/uploadProfitAndLoss/" method="POST" enctype="multipart/form-data">
+            <input type="text" style="display: none" name="userid" value="{{user.id}}" />
+            <input type="file" name="profitAndLoss"/>
+            <button class="btn btn-primary" type="submit">点击上传</button>
+          </form>
+        </div>
+        <label class="info col-lg-2">资产负债表</label>
+        {% if finacing.assetAndLiabitilities %}
+        <a class="info col-lg-5" href="{{finacing.assetAndLiabitilities.url}}">{{finacing.assetAndLiabitilities.name}} </a>
+        {% else %}
+        <label class="info col-lg-5">您还未上传此文件</label>
+	{% endif %}
+	<a href="#" class="info col-sm-offset-2 col-lg-3">点击下载资产负债表模板</a>
+        <div class="col-lg-12" style="margin-top:1%">
+          <form action="http://120.25.12.205/uploadAssetAndLiabitilities/" method="POST" enctype="multipart/form-data">
+            <input type="text" style="display: none" name="userid" value="{{uer.id}}" />
+            <input type="file" name="assetAndLiabitilities"/>
+            <button class="btn btn-primary" type="submit">点击上传</button>
+          </form>
+	</div>
+    </div>
+</div>
+<h4 class="col-sm-offset-2 col-lg-1" style="margin-top: 60px;">机会风险</h4>
+<label for="check9" class="col-lg-1" style="margin-top: 60px">是否可见
+    <input  type="checkbox" id="check9" onchange=shift(9,"check9") {% if visible.opportunitiesAndRisks %} checked="checked" {% endif %} />
+</label>
+<button class="col-sm-offset-5 col-sm-1 btn btn-link" style="margin-top: 60px;" onclick=isHidden("opportunitiesAndRisks",this)>展开▽</button>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-8" id="opportunitiesAndRisks" style="display: none">
+        <label class="info">有哪些发展机会？</label>
+        <textarea cols="120" rows="5" id="opportunities">{{opportunitiesAndRisks.opportunities}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(9,1,"opportunities")>保存修改</button>
+        <br />
+        <label class="info">面临哪些风险？</label>
+        <textarea cols="120" rows="5" id="risks">{{opportunitiesAndRisks.risks}}</textarea>
+	<button class="btn btn-warning" onclick=changePlan(9,2,"risks")>保存修改</button>
+    </div>
+</div>
+{% else %}
+<h4 class="col-sm-offset-2 col-lg-2" style="margin-top: 60px">投资信息</h4>
+<div class="col-lg-8 col-sm-offset-2" style="border-top: 1px gainsboro solid">
+    <div class="col-lg-5 info" style="display: inline">
+        <label>公司名称：<input type="text" id='company' value="{{project.company}}"/>
+        </label>
+    </div>
+    <div class="col-lg-5 info col-sm-offset-2" style="display: inline">
+        <label>公司邮箱：<input type="text" id='mail' value="{{project.mail}}" /></label>
+    </div>
+    <div class="col-lg-5 info" style="display: inline">
+        <label>投资阶段：<select id="phase">
+	    <option value="{{project.phase}}">{{project.phase}}</option>
+            <option value="种子期">种子期</option>
+            <option value="成长期">成长期</option>
+            <option value="高速发展期">高速发展期</option>
+            <option value="Pre-IPO">Pre-IPO</option>
+        </select></label>
+    </div>
+    <br />
+    <div class="col-lg-4 col-sm-offset-2 info" style="display: inline">
+        <label>投资类型：<select id="stage">
+	    <option value="{{project.stage}}">{{project.stage}}</option>
+            <option value="个人投资者">个人投资者</option>
+            <option value="天使投资者">天使投资者</option>
+            <option value="机构投资者">机构投资者</option>
+            <option value="风险投资基金">风险投资基金</option>
+        </select></label>
+    </div>
+    <div class="col-lg-5 info" style="display: inline">
+        <label>投资方向一：<select id="direction1">
+	    <option value="{{project.direction1}}" selected="selected">{{project.direction1}}</option>
+            <option value="全部">全部</option>
+            <option value="移动互联网">移动互联网</option>
+            <option value="电子商务">电子商务</option>
+            <option value="社交工具">社交工具</option>
+            <option value="银保理财">银保理财</option>
+            <option value="互联网金融">互联网金融</option>
+            <option value="众筹P2P">众筹P2P</option>
+            <option value="O2O">O2O</option>
+            <option value="TMT行业">TMT行业</option>
+            <option value="餐饮酒店">餐饮酒店</option>
+            <option value="移动应用">移动应用</option>
+            <option value="消费零售">消费零售</option>
+            <option value="生物制药">生物制药</option>
+            <option value="健康养生">健康养生</option>
+            <option value="互联网医疗">互联网医疗</option>
+            <option value="企业应用">企业应用</option>
+            <option value="创业服务">创业服务</option>
+            <option value="营销广告">营销广告</option>
+            <option value="美图视频">美图视频</option>
+            <option value="游戏娱乐">游戏娱乐</option>
+            <option value="影视内容">影视内容</option>
+            <option value="文化传媒">文化传媒</option>
+            <option value="娱乐图片">娱乐图片</option>
+            <option value="旅游会展">旅游会展</option>
+            <option value="搜索安全">搜索安全</option>
+            <option value="效率工具">效率工具</option>
+            <option value="运动体育">运动体育</option>
+            <option value="智能硬件">智能硬件</option>
+            <option value="家居产品">家居产品</option>
+            <option value="后勤物流">后勤物流</option>
+            <option value="新能源">新能源</option>
+            <option value="清洁技术">清洁技术</option>
+            <option value="电动车">电动车</option>
+            <option value="教育培训">教育培训</option>
+            <option value="科研创新">科研创新</option>
+            <option value="新兴农业">新兴农业</option>
+            <option value="房地产建筑">房地产建筑</option>
+            <option value="先进制造业">先进制造业</option>
+            <option value="现代服务业">现代服务业</option>
+            <option value="其它">其它</option>
+        </select></label>
+    </div>
+    <div class="col-lg-4 info col-sm-offset-2" style="display: inline">
+        <label>投资方向二：<select id="direction2">
+	    <option value="{{project.direction2}}" selected="selected">{{project.direction2}}</option>
+            <option value="全部">全部</option>
+            <option value="移动互联网">移动互联网</option>
+            <option value="电子商务">电子商务</option>
+            <option value="社交工具">社交工具</option>
+            <option value="银保理财">银保理财</option>
+            <option value="互联网金融">互联网金融</option>
+            <option value="众筹P2P">众筹P2P</option>
+            <option value="O2O">O2O</option>
+            <option value="TMT行业">TMT行业</option>
+            <option value="餐饮酒店">餐饮酒店</option>
+            <option value="移动应用">移动应用</option>
+            <option value="消费零售">消费零售</option>
+            <option value="生物制药">生物制药</option>
+            <option value="健康养生">健康养生</option>
+            <option value="互联网医疗">互联网医疗</option>
+            <option value="企业应用">企业应用</option>
+            <option value="创业服务">创业服务</option>
+            <option value="营销广告">营销广告</option>
+            <option value="美图视频">美图视频</option>
+            <option value="游戏娱乐">游戏娱乐</option>
+            <option value="影视内容">影视内容</option>
+            <option value="文化传媒">文化传媒</option>
+            <option value="娱乐图片">娱乐图片</option>
+            <option value="旅游会展">旅游会展</option>
+            <option value="搜索安全">搜索安全</option>
+            <option value="效率工具">效率工具</option>
+            <option value="运动体育">运动体育</option>
+            <option value="智能硬件">智能硬件</option>
+            <option value="家居产品">家居产品</option>
+            <option value="后勤物流">后勤物流</option>
+            <option value="新能源">新能源</option>
+            <option value="清洁技术">清洁技术</option>
+            <option value="电动车">电动车</option>
+            <option value="教育培训">教育培训</option>
+            <option value="科研创新">科研创新</option>
+            <option value="新兴农业">新兴农业</option>
+            <option value="房地产建筑">房地产建筑</option>
+            <option value="先进制造业">先进制造业</option>
+            <option value="现代服务业">现代服务业</option>
+            <option value="其它">其它</option>
+        </select></label>
+    </div>
+    <div class="col-lg-8">
+        <label class="info">公司简介</label>
+        <textarea cols="120" rows="5" id="summary" style="display:block;">{{project.summary}}</textarea>
+        <label class="info">投资团队</label>
+        <textarea cols="120" rows="5" id="team" style="display:block;">{{project.team}}</textarea>
+        <label class="info">投资组合</label>
+        <textarea cols="120" rows="5" id="assembly" style="display:block;">{{project.assembly}}</textarea>
+    </div>
+   	<button class="btn btn-warning col-sm-offset-9" style="margin-top:6%;margin-bottom:10%;"onclick=changeInvestTag()>保存修改</button>
+</div>
+{% endif %}
+</body>
+</html>

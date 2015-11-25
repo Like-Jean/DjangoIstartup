@@ -1,0 +1,85 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Generator" content="EditPlus®">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="Author" content="">
+        <meta name="Keywords" content="">
+        <meta name="Description" content="">
+
+        <title>Koali</title>
+        <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand active">Koali</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="#">手机app</a></li>
+                        <li><a href="http://120.25.12.205/register_phone/">注册</a></li>
+                        <li><a href="http://120.25.12.205/web_login/">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="onepage">
+                        <div class="container" style="width:100%">
+                            <div id="carousel-example-generic" class="carousel slide" data-interval="2000" >
+                                <ol class="carousel-indicators" style="margin-top: 50px">
+                                    <li data-target="#carousel-example-generic" data-silde-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-silde-to="1" class=""></li>
+                                    <li data-target="#carousel-example-generic" data-silde-to="2" class=""></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <a href="##"><img class="bg_img" src="http://120.25.12.205/site_media/img/test1.png" alt=""></a>
+                                        <div class="carousel-caption">
+                                            <img id="logo1" src="http://120.25.12.205/site_media/img/koali.png"/>
+                                            <h1 id="content-text">创业历程，不虚此生</h1>
+                                            <p>Venture meets Capital</p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img class="bg_img" src="http://120.25.12.205/site_media/img/test2.jpg">
+                                </div>
+                                <div class="item">
+                                    <img class="bg_img" src="http://120.25.12.205/site_media/img/test5.jpg">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-align-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-align-right"></span>
+                            </a>
+                        </div>
+                    </div>
+    </div>
+    <div class = "fooster">
+        <img class="app_img" src="http://120.25.12.205/site_media/img/apple.png" />
+       <a href="http://120.25.12.205/site_media/新事业.apk"><img class="app_img" src="http://120.25.12.205/site_media/img/android.png" /></a>
+        <p>
+            <a class="label">夸励公司</a>
+            <a class="label">加入我们</a>
+            <a class="label">联系我们</a>
+            <a class="label">创业成员</a>
+            <a class="label">意见反馈</a>
+        </p>
+        <a class="label">©2014 京ICP备13045110号 </a>
+    </div>
+        <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+        <script>
+            $('.carousel').carousel()
+	    $(".item").css({"width":document.documentElement.clientWidth,"height":document.documentElement.clientHeight*0.7});
+            $(".bg_img").css({"width":document.documentElement.clientWidth,"height":document.documentElement.clientHeight});
+            $("#logo1").css({"width":document.documentElement.clientWidth/6,"height":document.documentElement.clientWidth/6});
+	    $(".fooster").css("height",document.documentElement.clientHeight/4)
+        </script>
+</body>
+</html>

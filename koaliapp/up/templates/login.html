@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>登录新事业账号</title>
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/koali.js"></script>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <style type="text/css">
+        span {
+            font-size: 30px;
+            margin-left: 60px;
+            margin-top: 500px;
+        }
+        body{padding:10px;margin:10px;}
+    </style>
+</head>
+
+<body style="padding:0px;margin-left:0px;">
+   <div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1">
+    <img src="http://120.25.12.205/site_media/img/bg3.jpg" height="100%" width="100%"/>
+   </div>
+
+<div class="main">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="http://120.25.12.205/" class="navbar-brand">Koali</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">手机app</a></li>
+                    <li><a href="http://120.25.12.205/register_phone/">注册</a></li>
+                    <li class="active"><a href="#">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <div class="maintitle" style="padding-top: 100px;">
+        <h1 class="col-sm-offset-5" style="color:#FFF">登录您的新事业账号</h1>
+    </div>
+    <div class="form-group" style="padding-top:100px;">
+        <label for="account" class="control-label col-sm-2 col-sm-offset-4" style="color:#FFF;background:#000;width:150px">手机号/邮箱：</label>
+        <div class="col-sm-3">
+            <input type="text" id="account" name="account" class="form-control input-group-lg" style="color:#AAA;" onChange="accountChange()" value="输入邮箱或者手机号" onfocus="javascript:if(this.value=='输入邮箱或者手机号'){this.value='';this.style.color='#000'}" onblur="javascript:if(this.value==''){this.value='输入邮箱或者手机号';this.style.color='#AAA';}" />
+        </div>
+    </div>
+    <div class="form-group" style="padding-top:50px;">
+        <label for="password" class="control-label col-sm-2 col-sm-offset-4" style="color:#FFF;width:150px;background:#000;">密码：</label>
+        <div class="col-sm-3">
+            <input type="text" id="password" name="password" class="form-control input-group-lg" style="color:#AAA;" onChange="passwordChange()" value="请输入密码" onfocus="passwordOnFocus()" onblur="javascript:if(this.value==''){this.value='请输入密码';this.type='text';this.style.color='#AAA';}" />
+        </div>
+    </div>
+    <div class="form-group col-sm-12" style="padding-top:80px;">
+        <div class="col-sm-offset-5">
+            <button type="button" id="login" class="btn btn-primary" style="margin-left:40px;" onclick=login()>登录</button>
+            <button type="button" id="forget" class="btn btn-primary" style="margin-left:80px;">忘记密码？</button>
+        </div>
+	<br />
+	<label id="show"></label>
+</div>
+    </div>
+</body>
+</html>

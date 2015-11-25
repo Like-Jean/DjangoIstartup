@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>{{obj.company}}-投资源</title>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: #e7e7e7">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="http://120.25.12.205/" class="navbar-brand">Koali</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://120.25.12.205/mainpage/">个人信息</a></li>
+                <li><a href="http://120.25.12.205/web_poineeringCircle/?p=1&&direction1=0&direction2=0">创业板</a></li>
+                <li class="active"><a href="#">投资源</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="head" class="col-lg-9 col-sm-offset-1" style="margin-top: 5%;padding: 0px;background-color: #ffffff;border: 1px silver solid">
+    <div class="col-lg-2" style="margin-top: 2%;margin-bottom: 2%">
+        <img src="{{obj.headImg}}" style="width:150px;height:150px;border-radius:50%;"/>
+    </div>
+    <div class="col-lg-9" style="margin-top: 1%;margin-bottom: 1%">
+        <h3>{{obj.company}}</h3>
+        <p style="display: block;color: #adadad">{{obj.name}}</p>
+        <div class="col-lg-12" style="padding: 0px">
+            <label>投资领域</label>
+            <img src="http://120.25.12.205/site_media/img/tag1.png" style="height: 3%;width: 13%">
+            <div class="col-lg-6" style="position:absolute;width:100px;height:100px;z-indent:2;left:0.8cm;top:0;margin-left: 3%">
+                <label style="margin-top: 3%;color: #ffffff">{{obj.direction1}}</label>
+            </div>
+            <img src="http://120.25.12.205/site_media/img/tag1.png" style="height: 3%;width: 13%">
+            <div class="col-sm-offset-6 col-lg-6" style="position:absolute;width:100px;height:100px;z-indent:2;left:2.7cm;top:0;margin-left: 6%">
+                <label style="margin-top: 3%;color: #ffffff">{{obj.direction2}}</label>
+            </div>
+        </div>
+        <div class="col-lg-12" style="padding: 0px">
+            <label>投资类型:{{obj.stage}}</label>
+            <label class="col-sm-offset-2">{{obj.province}}{{obj.city}}</label>
+        </div>
+        <div class="col-lg-12" style="padding: 0px" id="item1">
+            <label>投资阶段:{{obj.phase}}</label>
+            <div class="col-sm-offset-5" style="display: inline">
+                <a href="mailto:{{obj.mail}}" style="text-decoration: none;"><img src="http://120.25.12.205/site_media/img/letter.png" style="height: 3%;width: 3%">{{obj.mail}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main" class="col-lg-9 col-sm-offset-1" style="margin-top: 1%;padding: 0px;background-color: #ffffff;border: 1px silver solid">
+    <h4 class="col-sm-offset-5 col-lg-6" style="margin-top: 20px;">公司介绍</h4>
+    <div class="col-lg-12" style="border-top: 1px gainsboro solid">
+        <p>{{obj.summary}}</p>
+    </div>
+    <h4 class="col-sm-offset-5 col-lg-6" style="margin-top: 40px;">投资团队</h4>
+    <div class="col-lg-12" style="border-top: 1px gainsboro solid">
+        <p>{{obj.team}}</p>
+    </div>
+    <h4 class="col-sm-offset-5 col-lg-6" style="margin-top: 40px;">投资组合</h4>
+    <div class="col-lg-12" style="border-top: 1px gainsboro solid">
+        <p>{{obj.assembly}}</p>
+    </div>
+</div>
+<div class = "fooster col-lg-12" style="z-index:-1;margin-top:1%">
+    <img class="app_img" src="http://120.25.12.205/site_media/img/apple.png" />
+    <img class="app_img" src="http://120.25.12.205/site_media/img/android.png" />
+    <p>
+        <a class="label">夸励公司</a>
+        <a class="label">加入我们</a>
+        <a class="label">联系我们</a>
+        <a class="label">创业成员</a>
+        <a class="label">意见反馈</a>
+    </p>
+    <a class="label">©2014 京ICP备13045110号 </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>创业板</title>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+
+    <!-- jqPagination styles -->
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/jqpagination.css" />
+
+    <!-- scripts -->
+    <script src="http://120.25.12.205/site_media/js/jquery.jqpagination.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.pagination').jqPagination({
+                link_string : 'http://120.25.12.205/poineeringCircle/?p={page_number}',
+                max_page    : {{count}},
+                current_page: {{p}},
+                page_string: "{current_page}/{max_page}",
+                paged       : function(page) {
+			var url = "http://120.25.12.205/web_poineeringCircle/?direction1=" + document.getElementById("direction1").value + "&direction2=" + document.getElementById("direction2").value + "&p=" + page;
+			window.location=url;		
+	}
+        });
+        });
+
+        function select_first(direction,index){
+            var selected = document.getElementById(direction);
+            var item = document.getElementById(index);
+            selected.innerHTML = item.innerHTML;
+            document.getElementById("direction1").value = item.tabIndex;
+        }
+
+	function select_second(direction,index){
+            var selected = document.getElementById(direction);
+            var item = document.getElementById(index);
+            selected.innerHTML = item.innerHTML;
+            document.getElementById("direction2").value = item.tabIndex;
+        }
+
+	function sift(){
+		var url = "http://120.25.12.205/web_poineeringCircle/?direction1=" + document.getElementById("direction1").value + "&direction2=" + document.getElementById("direction2").value + "&p=" + 1;
+		window.location=url;
+	}
+    </script>
+</head>
+<body style="background-color: #e7e7e7">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="http://120.25.12.205/" class="navbar-brand">Koali</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://120.25.12.205/mainpage/">个人信息</a></li>
+                <li class="active"><a href="#">创业板</a></li>
+                <li><a href="http://120.25.12.205/web_investmentCircle/?p=1">投资源</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="col-lg-8 col-sm-offset-2" style="margin-top: 5%;padding: 0px;">
+    <h2>创业板</h2>
+    <p>优势互补，左右逢源，发展创业资源，结交生意伙伴</p>
+</div>
+<div class="col-lg-8 col-sm-offset-2" style="margin-top: 3%;padding: 0px;">
+    <div class="dropdown" style="display: inline">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            选择方向一
+            <span class="caret"></span>
+        </button>
+        <input id="direction1" style="display: none" value="0" />
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		{% for direction in direction_list  %}
+            <li role="presentation"><a role="menuitem" id="menu{{direction.id}}" tabindex="{{direction.id}}" href="#" onclick="select_first('dropdownMenu1','menu{{direction.id}}')" >{{direction.name}}</a></li>
+		{% endfor %}
+        </ul>
+    </div>
+    <div class="dropdown" style="display: inline">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+            选择方向二
+            <span class="caret"></span>
+        </button>
+        <input id="direction2" style="display: none" value="0" />
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		{% for direction in direction_list  %}
+            <li role="presentation"><a role="menuitem" id="menu{{direction.id}}" tabindex="{{direction.id}}" href="#" onclick="select_second('dropdownMenu2','menu{{direction.id}}')
+" >{{direction.name}}</a></li>
+                {% endfor %}
+        </ul>
+    </div>
+    <button class="col-sm-offset-1 btn btn-default" onclick="sift()">确定条件</button>
+</div>
+<div id="main" class="col-lg-8 col-sm-offset-2" style="margin-top: 30px;padding: 0px;">
+	{% for obj in obj_list  %}
+	<a href="http://120.25.12.205/web_poineeringInfo/?sid={{obj.id}}" style="text-decoration: none; color:#000000" target="_blank">
+    <div id="{{obj.id}}" class="col-lg-12" style="margin-top:3%;background-color: #ffffff;height: 20%;border: 1px silver solid">
+        <div class="col-lg-7" style="margin-top: 3%">
+            <h3>{{obj.name}}</h3>
+            <p style="display: inline;color: #adadad;height:10px;text-overflow:ellipsis;">{{obj.summary}}</p>
+        </div>
+        <div class="col-lg-4 col-sm-offset-1" style="display: inline;margin-top: 4%">
+            <p style="display: inline;color: #adadad">{{obj.founder}}</p>
+            <img src="{{obj.headImg}}" class="col-sm-offset-2" style="width:100px;height:100px;border-radius:20px;display: inline">
+        </div>
+	<div style="padding-left:0px;display:block">
+        <label class="col-lg-6">创建日期:{{obj.startDate}}</label>
+        <label class="col-lg-4">{{obj.province}}{{obj.city}}</label>
+	</div>
+        <div class="col-lg-6">
+            <label>项目方向</label>
+            <img src="http://120.25.12.205/site_media/img/tag1.png" style="height: 5%;width: 24%">
+            <div class="col-lg-6" style="position:absolute;width:100px;height:100px;z-indent:2;left:1.5cm;top:0;margin-left: 3%">
+                    <label style="margin-top: 3%;color: #ffffff">{{obj.direction1}}</label>
+            </div>
+            <img src="http://120.25.12.205/site_media/img/tag2.png" style="height: 5%;width: 24%">
+            <div class="col-sm-offset-6 col-lg-6" style="position:absolute;width:100px;height:100px;z-indent:2;left:3.7cm;top:0;margin-left: 6%">
+                    <label style="margin-top: 3%;color: #ffffff">{{obj.direction2}}</label>
+            </div>
+        </div>
+        <div class="col-lg-3" style="margin-bottom: 2%">
+            <label>需要资金：{{obj.fund}}</label>
+        </div>
+	<div class="col-lg-3" style="margin-bottom: 2%">
+		{% if obj.idea %}
+	     <img src="http://120.25.12.205/site_media/img/chuangyijinglian.png" style="height: 15%;width: 15%" /><label>创意精炼中</label>
+		{% elif obj.team %}
+	     <img src="http://120.25.12.205/site_media/img/zujiantuandui.png" style="height: 15%;width: 15%" /><label>组建团队中</label>
+		{% elif obj.product %}
+	     <img src="http://120.25.12.205/site_media/img/chanpinkaifa.png" style="height: 15%;width: 15%" /><label>产品开发中</label>
+		{% elif obj.running %}
+	     <img src="http://120.25.12.205/site_media/img/yunyin.png" style="height: 15%;width: 15%" /><label>正式运营中</label>
+		{% endif %}
+	</div>
+    </div>
+	</a>
+	{% endfor %}
+</div>
+<div class="col-lg-4 col-sm-offset-5">
+<div class="gigantic pagination" style="margin-bottom: 3%;">
+    <a href="#" data-action="first">&laquo;</a>
+    <a href="#" data-action="previous">&lsaquo;</a>
+    <input type="text" readonly="readonly" />
+    <a href="#" data-action="next">&rsaquo;</a>
+    <a href="#" data-action="last">&raquo;</a>
+</div>
+</div>
+</body>
+</html>

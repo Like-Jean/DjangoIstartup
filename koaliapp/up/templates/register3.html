@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>欢迎注册新事业</title>
+    <script src="http://120.25.12.205/site_media/js/jQuery.min.js"></script>
+    <script src="http://120.25.12.205/site_media/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://120.25.12.205/site_media/css/koali.css">
+    <style type="text/css">
+    span {
+        font-size: 30px;
+        margin-left: 60px;
+        margin-top: 500px;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    </style>
+</head>
+
+<body style="padding:0px;margin-left:0px;">
+   <div id="Layer1" style="position:absolute; width:100%; height:110%; z-index:-1">
+    <img src="http://120.25.12.205/site_media/img/bg5.jpg" height="110%" width="100%"/>
+   </div>
+    <div class="main">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="120.25.12.205" class="navbar-brand">Koali</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">手机app</a></li>
+                        <li class="active"><a href="#">注册</a></li>
+                        <li><a href="http://120.25.12.205/web_login/">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br />
+        <div class="maintitle" style="padding-top: 100px;">
+            <h1 class="col-lg-offset-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎来到新事业的创业世界</h1>
+        </div>
+        <div class="contain" style="padding-top: 80px;">
+                <label for="phone" class="control-label col-sm-1 col-sm-offset-4" style="color:#FFF;margin-top:8px;">邮 箱：</label>
+                <div class="col-sm-3">
+                    <input id="mail" type="text" class="form-control input-group-lg" name="phone" style="color:#AAA;" value="请输入邮箱" onfocus="javascript:if(this.value=='请输入邮箱'){this.value='';this.style.color='#000';}" onblur="javascript:if(this.value==''){this.value='请输入邮箱';this.style.color='#AAA';}" />
+                </div>
+                <button id="check" class="btn-primary">检测账号</button>
+            <label id="result1" style="color:#FFF">&nbsp;&nbsp;&nbsp;</label>
+            <br />
+            <br />
+            <div class="form-group">
+                <a href="http://120.25.12.205/register_phone/" class="control-label col-sm-offset-4" style="font-size:15px;color:#bce8f1">使用手机号注册</a>
+            </div>
+            <div class="form-group" style="padding-top:20px;">
+                <label for="name" class="control-label col-sm-1 col-sm-offset-4" style="color:#FFF;margin-top:8px;">姓名：</label>
+                <div class="col-sm-3">
+                    <input type="text" id="name" name="name" class="form-control input-group-lg" style="color:#AAA;" onChange="nameChange()" value="投资人只约谈真实姓名用户" onfocus="javascript:if(this.value=='投资人只约谈真实姓名用户'){this.value='';this.style.color='#000'}" onblur="javascript:if(this.value==''){this.value='投资人只约谈真实姓名用户';this.style.color='#AAA';}" />
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:50px;">
+                <label for="password" class="control-label col-sm-1 col-sm-offset-4" style="color:#FFF;margin-top:8px;">密码：</label>
+                <div class="col-sm-3">
+                    <input type="text" id="password" name="password" class="form-control input-group-lg" style="color:#AAA;" onChange="passwordChange()" value="请输入6位以上密码" onfocus="passwordOnFocus()" onblur="javascript:if(this.value==''){this.value='请输入6位以上密码';this.type='text';this.style.color='#AAA';}" />
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:50px;">
+                <label for="checkpass" class="control-label col-sm-1 col-sm-offset-4" style="color:#FFF;margin-top:8px;">重复密码：</label>
+                <div class="col-sm-3">
+                    <input type="text" id="checkpass" name="checkpass" class="form-control input-group-lg" style="color:#AAA;" onChange="checkpassChange()" value="请再次输入密码" onfocus="checkpasswordOnFocus()" onblur="javascript:if(this.value==''){this.value='请再次输入密码';this.type='text';this.style.color='#AAA';}" />
+                </div>
+            </div>
+            <div class="form-group col-sm-12" style="padding-top:50px;">
+                <div class="btn-group col-sm-offset-5">
+                    <label class="btn btn-primary">
+                        <input type="radio" value="创业者" name="form" checked="checked" onChange="formChange()" />创业者
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" value="投资者" name="form" onChange="formChange()" />投资者
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-12" style="padding-top:20px;">
+                <div class="col-sm-offset-5">
+                    <input type="checkbox" id="agree"><label style="color:#FFF">我已认真阅读并同意</label><a href="http://120.25.12.205/protocol/" target="_blank" style="color:#bce8f1">用户协议</a></input>
+                </div>
+            </div>
+            <div class="form-group col-sm-12">
+                <div class="col-sm-offset-6">
+                    <input type="submit" id="submit" class="btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var mail;
+    var name;
+    var password;
+
+    var selForm;
+    var form = document.getElementsByName("form");
+    for (var i = form.length - 1; i >= 0; i--) {
+        if (form[i].checked === "checked") {
+            selForm = form[i].value;
+        }
+    }
+
+    function passwordOnFocus() {
+        var passwordInput = document.getElementById("password");
+        passwordInput.type = "password";
+        if (passwordInput.value == "请输入6位以上密码") {
+            passwordInput.value = "";
+            passwordInput.style.color = "#000";
+        }
+    }
+
+    function checkpasswordOnFocus() {
+        var checkpasswordInput = document.getElementById("checkpass");
+        checkpasswordInput.type = "password";
+        if (checkpasswordInput.value == "请再次输入密码") {
+            checkpasswordInput.value = "";
+            checkpasswordInput.style.color = "#000";
+        }
+    }
+
+    document.getElementById("check").onclick = function() {
+        //检测账号是否存在
+        var request = new XMLHttpRequest();
+        request.open("GET", "http://120.25.12.205/check/?mail=" + document.getElementById("mail").value);
+        request.send();
+        request.onreadystatechange = function() {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    var result = JSON.parse(request.responseText);
+                    if (result.message === "available") {
+                        document.getElementById("result1").innerHTML = "该账号可以使用";
+                    } else {
+                        document.getElementById("result1").innerHTML = "该账号已被注册";
+                    }
+                }
+            }
+        }
+    }
+
+    document.getElementById("submit").onclick = function() {
+        if (document.getElementById("agree").checked == true) {
+            var check = new XMLHttpRequest();
+            check.open("GET", "http://120.25.12.205/check/?mail=" + document.getElementById("mail").value);
+            check.send();
+            check.onreadystatechange = function() {
+                if (check.readyState === 4) {
+                    if (check.status === 200) {
+                        var result = JSON.parse(check.responseText);
+                        if (result.message === "available") {
+                            mail = document.getElementById("mail").value;
+                            var summit = new XMLHttpRequest();
+                            summit.open("POST", "http://120.25.12.205/register/");
+                            summit.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                            var sum_data = "mail=" + mail + "&name=" + name + "&password=" + password + "&form=" + selForm;
+                            summit.send(sum_data);
+                            summit.onreadystatechange = function() {
+                                if (summit.readyState === 4) {
+                                    if (summit.status === 200) {
+                                        var response = JSON.parse(summit.responseText);
+                                        if (response.message === "success") {
+                                        	window.loaction("http://120.25.12.205/success/?mail="+mail);
+					} else {
+                                            alert("注册失败，请重新操作");
+                                        }
+                                    }
+                                }
+                            }
+
+                        } else {
+                            alert("账号已存在！");
+                        }
+                    }
+                }
+            }
+        } else {
+            alert("请认真阅读并选择是否同意用户协议！");
+        }
+
+    }
+
+    function passwordChange() {
+        password = document.getElementById("password").value;
+    }
+
+    function formChange() {
+        form = document.getElementsByName("form");
+        for (var i = form.length - 1; i >= 0; i--) {
+            if (form[i].checked === "checked") {
+                selForm = form[i].value;
+            }
+        };
+    }
+
+    function checkpassChange() {
+        checkpass = document.getElementById("checkpass").value;
+        if (checkpass != password) {
+            alert("两次输入不一致");
+        }
+    }
+
+    function nameChange() {
+        name = document.getElementById("name").value;
+    }
+    </script>
+</body>
+
+</html>
